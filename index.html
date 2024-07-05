@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Image Generator</h1>
+        <form id="image-form">
+            <input type="text" id="prompt" placeholder="Enter your prompt" required>
+            <button type="submit">Generate Image</button>
+        </form>
+        <div id="result">
+            <h2>Generated Image</h2>
+            <iframe id="generated-image" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+    <script>
+        document.getElementById('image-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const prompt = document.getElementById('prompt').value;
+            const generatedImage = document.getElementById('generated-image');
+
+            // Generate the URL for the AI image generation website
+            const url = `https://deepai.org/machine-learning-model/text2img?text=${encodeURIComponent(prompt)}`;
+
+            // Update the iframe with the generated URL
+            generatedImage.src = url;
+            generatedImage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
